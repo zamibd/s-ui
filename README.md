@@ -1,19 +1,15 @@
 # S-UI
 **An Advanced Web Panel • Built on SagerNet/Sing-Box**
 
-![](https://img.shields.io/github/v/release/zamibd/s-ui.svg)
-![S-UI Docker pull](https://img.shields.io/docker/pulls/zamibd/s-ui.svg)
-[![Go Report Card](https://goreportcard.com/badge/github.com/zamibd/s-ui)](https://goreportcard.com/report/github.com/zamibd/s-ui)
-[![Downloads](https://img.shields.io/github/downloads/zamibd/s-ui/total.svg)](https://img.shields.io/github/downloads/zamibd/s-ui/total.svg)
-[![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
 
 > **Disclaimer:** This project is only for personal learning and communication, please do not use it for illegal purposes, please do not use it in a production environment
 
 **If you think this project is helpful to you, you may wish to give a**:star2:
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/zamibd)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/alireza7)
 
-<a href="https://nowpayments.io/donation/zamibd" target="_blank" rel="noreferrer noopener">
+<a href="https://nowpayments.io/donation/alireza7" target="_blank" rel="noreferrer noopener">
    <img src="https://nowpayments.io/images/embeds/donation-button-white.svg" alt="Crypto donation button by NOWPayments">
 </a>
 
@@ -38,9 +34,9 @@
 
 ## Screenshots
 
-!["Main"](https://github.com/zamibd/s-ui-frontend/raw/main/media/main.png)
+!["Main"](https://github.com/zamibd/s-ui/blob/main/frontend/media/main.png)
 
-[Other UI Screenshots](https://github.com/zamibd/s-ui-frontend/blob/main/screenshots.md)
+[Other UI Screenshots](https://github.com/zamibd/s-ui/blob/main/frontend/screenshots.md)
 
 ## API Documentation
 
@@ -57,7 +53,7 @@
 
 ### Linux/macOS
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/zamibd/s-ui/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/zamibd/s-ui/main/install.sh)
 ```
 
 ### Windows
@@ -78,7 +74,7 @@ VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/zamibd/s-ui/$
 
 ### Linux/macOS
 1. Get the latest version of S-UI based on your OS/Architecture from GitHub: [https://github.com/zamibd/s-ui/releases/latest](https://github.com/zamibd/s-ui/releases/latest)
-2. **OPTIONAL** Get the latest version of `s-ui.sh` [https://raw.githubusercontent.com/zamibd/s-ui/master/s-ui.sh](https://raw.githubusercontent.com/zamibd/s-ui/master/s-ui.sh)
+2. **OPTIONAL** Get the latest version of `s-ui.sh` [https://raw.githubusercontent.com/zamibd/s-ui/main/s-ui.sh](https://raw.githubusercontent.com/zamibd/s-ui/master/s-ui.sh)
 3. **OPTIONAL** Copy `s-ui.sh` to /usr/bin/ and run `chmod +x /usr/bin/s-ui`.
 4. Extract s-ui tar.gz file to a directory of your choice and navigate to the directory where you extracted the tar.gz file.
 5. Copy *.service files to /etc/systemd/system/ and run `systemctl daemon-reload`.
@@ -126,7 +122,7 @@ curl -fsSL https://get.docker.com | sh
 
 ```shell
 mkdir s-ui && cd s-ui
-wget -q https://raw.githubusercontent.com/zamibd/s-ui/master/docker-compose.yml
+wget -q https://raw.githubusercontent.com/zamibd/s-ui/main/docker-compose.yml
 docker compose up -d
 ```
 
@@ -139,7 +135,7 @@ docker run -itd \
     -v $PWD/db/:/app/db/ \
     -v $PWD/cert/:/root/cert/ \
     --name s-ui --restart=unless-stopped \
-    zamibd/s-ui:latest
+    imzami/s-ui:latest
 ```
 
 > Build your own image
@@ -248,7 +244,4 @@ ln -s /snap/bin/certbot /usr/bin/certbot
 certbot certonly --standalone --register-unsafely-without-email --non-interactive --agree-tos -d <Your Domain Name>
 ```
 
-</details>
-
-## Stargazers over Time
-[![Stargazers over time](https://starchart.cc/zamibd/s-ui.svg)](https://starchart.cc/zamibd/s-ui)
+</details> 

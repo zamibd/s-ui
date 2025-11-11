@@ -22,9 +22,14 @@ RUN apk update && apk add --no-cache \
 
 ENV CC=gcc
 
+# Copy source code
 COPY . .
 COPY --from=front-builder /app/dist/ /app/web/html/
 
+# Ensure dependencies are up to date and downloaded
+RUN go mod tidy && go mod download
+
+# Build the application
 RUN go build -ldflags="-w -s" \
     -tags "with_quic,with_grpc,with_utls,with_acme,with_gvisor" \
     -o sui main.go
