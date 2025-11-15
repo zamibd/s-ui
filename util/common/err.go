@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/zamibd/s-ui/logger"
+	"github.com/zamibd/ZPanel/logger"
 )
 
 func NewErrorf(format string, a ...interface{}) error {

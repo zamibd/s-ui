@@ -1,4 +1,4 @@
-# S-UI
+# ZPanel
 **An Advanced And Powerfull Web Panel • Built on Sing-Box**
 
 
@@ -27,18 +27,18 @@
 
 ## Screenshots
 
-!["Main"](https://github.com/zamibd/s-ui/blob/main/frontend/media/main.png)
+!["Main"](https://github.com/zamibd/ZPanel/blob/main/frontend/media/main.png)
 
-[Other UI Screenshots](https://github.com/zamibd/s-ui/blob/main/frontend/screenshots.md)
+[Other UI Screenshots](https://github.com/zamibd/ZPanel/blob/main/frontend/screenshots.md)
 
 ## API Documentation
 
-[API-Documentation Wiki](https://github.com/zamibd/s-ui/wiki/API-Documentation)
+[API-Documentation Wiki](https://github.com/zamibd/ZPanel/wiki/API-Documentation)
 
 ## Default Installation Information
-- Panel Port: 2095
+- Panel Port: 2080
 - Panel Path: /app/
-- Subscription Port: 2096
+- Subscription Port: 2081
 - Subscription Path: /sub/
 - User/Password: admin
 
@@ -46,11 +46,11 @@
 
 ### Linux/macOS
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/zamibd/s-ui/main/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/zamibd/ZPanel/main/install.sh)
 ```
 
 ### Windows
-1. Download the latest Windows release from [GitHub Releases](https://github.com/zamibd/s-ui/releases/latest)
+1. Download the latest Windows release from [GitHub Releases](https://github.com/zamibd/ZPanel/releases/latest)
 2. Extract the ZIP file
 3. Run `install-windows.bat` as Administrator
 4. Follow the installation wizard
@@ -60,40 +60,40 @@ bash <(curl -Ls https://raw.githubusercontent.com/zamibd/s-ui/main/install.sh)
 **Step 1:** To install your desired legacy version, add the version to the end of the installation command. e.g., ver `1.0.0`:
 
 ```sh
-VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/zamibd/s-ui/$VERSION/install.sh) $VERSION
+VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/zamibd/ZPanel/$VERSION/install.sh) $VERSION
 ```
 
 ## Manual installation
 
 ### Linux/macOS
-1. Get the latest version of S-UI based on your OS/Architecture from GitHub: [https://github.com/zamibd/s-ui/releases/latest](https://github.com/zamibd/s-ui/releases/latest)
-2. **OPTIONAL** Get the latest version of `s-ui.sh` [https://raw.githubusercontent.com/zamibd/s-ui/main/s-ui.sh](https://raw.githubusercontent.com/zamibd/s-ui/master/s-ui.sh)
-3. **OPTIONAL** Copy `s-ui.sh` to /usr/bin/ and run `chmod +x /usr/bin/s-ui`.
-4. Extract s-ui tar.gz file to a directory of your choice and navigate to the directory where you extracted the tar.gz file.
+1. Get the latest version of ZPanel based on your OS/Architecture from GitHub: [https://github.com/zamibd/ZPanel/releases/latest](https://github.com/zamibd/ZPanel/releases/latest)
+2. **OPTIONAL** Get the latest version of `ZPanel.sh` [https://raw.githubusercontent.com/zamibd/ZPanel/main/ZPanel.sh](https://raw.githubusercontent.com/zamibd/ZPanel/master/ZPanel.sh)
+3. **OPTIONAL** Copy `ZPanel.sh` to /usr/bin/ and run `chmod +x /usr/bin/ZPanel`.
+4. Extract ZPanel tar.gz file to a directory of your choice and navigate to the directory where you extracted the tar.gz file.
 5. Copy *.service files to /etc/systemd/system/ and run `systemctl daemon-reload`.
-6. Enable autostart and start S-UI service using `systemctl enable s-ui --now`
+6. Enable autostart and start ZPanel service using `systemctl enable ZPanel --now`
 7. Start sing-box service using `systemctl enable sing-box --now`
 
 ### Windows
-1. Get the latest Windows version from GitHub: [https://github.com/zamibd/s-ui/releases/latest](https://github.com/zamibd/s-ui/releases/latest)
-2. Download the appropriate Windows package (e.g., `s-ui-windows-amd64.zip`)
+1. Get the latest Windows version from GitHub: [https://github.com/zamibd/ZPanel/releases/latest](https://github.com/zamibd/ZPanel/releases/latest)
+2. Download the appropriate Windows package (e.g., `ZPanel-windows-amd64.zip`)
 3. Extract the ZIP file to a directory of your choice
 4. Run `install-windows.bat` as Administrator
 5. Follow the installation wizard
-6. Access the panel at http://localhost:2095/app
+6. Access the panel at http://localhost:2080/app
 
-## Uninstall S-UI
+## Uninstall ZPanel
 
 ```sh
 sudo -i
 
-systemctl disable s-ui  --now
+systemctl disable ZPanel  --now
 
 rm -f /etc/systemd/system/sing-box.service
 systemctl daemon-reload
 
-rm -fr /usr/local/s-ui
-rm /usr/bin/s-ui
+rm -fr /usr/local/ZPanel
+rm /usr/bin/ZPanel
 ```
 
 ## Install using Docker
@@ -109,33 +109,33 @@ rm /usr/bin/s-ui
 curl -fsSL https://get.docker.com | sh
 ```
 
-**Step 2:** Install S-UI
+**Step 2:** Install ZPanel
 
 > Docker compose method
 
 ```shell
-mkdir s-ui && cd s-ui
-wget -q https://raw.githubusercontent.com/zamibd/s-ui/main/docker-compose.yml
+mkdir ZPanel && cd ZPanel
+wget -q https://raw.githubusercontent.com/zamibd/ZPanel/main/docker-compose.yml
 docker compose up -d
 ```
 
 > Use docker
 
 ```shell
-mkdir s-ui && cd s-ui
+mkdir ZPanel && cd ZPanel
 docker run -itd \
-    -p 2095:2095 -p 2096:2096 -p 443:443 -p 80:80 \
+    -p 2080:2080 -p 2081:2081 -p 443:443 -p 80:80 \
     -v $PWD/db/:/app/db/ \
     -v $PWD/cert/:/root/cert/ \
-    --name s-ui --restart=unless-stopped \
-    imzami/s-ui:latest
+    --name ZPanel --restart=unless-stopped \
+    imzami/ZPanel:latest
 ```
 
 > Build your own image
 
 ```shell
-git clone https://github.com/zamibd/s-ui
-docker build -t s-ui .
+git clone https://github.com/zamibd/ZPanel
+docker build -t ZPanel .
 ```
 
 </details>
@@ -153,13 +153,13 @@ docker build -t s-ui .
 ### Clone the repository
 ```shell
 # clone repository
-git clone https://github.com/zamibd/s-ui
+git clone https://github.com/zamibd/ZPanel
 ```
 
 
 ### - Frontend
 
-Visit [s-ui-frontend](https://github.com/zamibd/s-ui-frontend) for frontend code
+Visit [ZPanel-frontend](https://github.com/zamibd/ZPanel-frontend) for frontend code
 
 ### - Backend
 > Please build frontend once before!

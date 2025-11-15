@@ -3,7 +3,7 @@ package api
 import (
 	"encoding/gob"
 
-	"github.com/zamibd/s-ui/database/model"
+	"github.com/zamibd/ZPanel/database/model"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"

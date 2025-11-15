@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/zamibd/s-ui/config"
-	"github.com/zamibd/s-ui/logger"
-	"github.com/zamibd/s-ui/middleware"
-	"github.com/zamibd/s-ui/network"
-	"github.com/zamibd/s-ui/service"
+	"github.com/zamibd/ZPanel/config"
+	"github.com/zamibd/ZPanel/logger"
+	"github.com/zamibd/ZPanel/middleware"
+	"github.com/zamibd/ZPanel/network"
+	"github.com/zamibd/ZPanel/service"
 
 	"github.com/gin-gonic/gin"
 )

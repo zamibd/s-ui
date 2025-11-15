@@ -1,4 +1,4 @@
-name: Release S-UI
+name: Release ZPanel
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
       - '**.go'
       - 'go.mod'
       - 'go.sum'
-      - 's-ui.service'
+      - 'ZPanel.service'
 
 permissions:
   contents: write
@@ -61,7 +61,7 @@ jobs:
           go mod tidy
           go mod download
 
-      - name: Build s-ui
+      - name: Build ZPanel
         run: |
           export CGO_ENABLED=1
           export GOOS=linux
@@ -86,24 +86,24 @@ jobs:
           [ -z "$CC" ] && { echo "No gcc.br_real found in $TOOLCHAIN_DIR/bin" >&2; exit 1; }
           cd -
 
-          ### Build s-ui
+          ### Build ZPanel
           go build -ldflags="-w -s -linkmode external -extldflags '-static'" -tags "with_quic,with_grpc,with_utls,with_acme,with_gvisor" -o sui main.go
           file sui
           ldd sui || echo "Static binary confirmed"
 
-          mkdir s-ui
-          cp sui s-ui/
-          cp s-ui.service s-ui/
-          cp s-ui.sh s-ui/
+          mkdir ZPanel
+          cp sui ZPanel/
+          cp ZPanel.service ZPanel/
+          cp ZPanel.sh ZPanel/
 
       - name: Package
-        run: tar -zcvf s-ui-linux-${{ matrix.platform }}.tar.gz s-ui
+        run: tar -zcvf ZPanel-linux-${{ matrix.platform }}.tar.gz ZPanel
 
       - name: Upload files to Artifacts
         uses: actions/upload-artifact@v5
         with:
-          name: s-ui-linux-${{ matrix.platform }}
-          path: ./s-ui-linux-${{ matrix.platform }}.tar.gz
+          name: ZPanel-linux-${{ matrix.platform }}
+          path: ./ZPanel-linux-${{ matrix.platform }}.tar.gz
           retention-days: 30
 
       - name: Install GitHub CLI
@@ -121,4 +121,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ github.event.release.tag_name }} s-ui-linux-${{ matrix.platform }}.tar.gz --clobber
+          gh release upload ${{ github.event.release.tag_name }} ZPanel-linux-${{ matrix.platform }}.tar.gz --clobber

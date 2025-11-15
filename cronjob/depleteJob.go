@@ -1,9 +1,9 @@
 package cronjob
 
 import (
-	"github.com/zamibd/s-ui/database"
-	"github.com/zamibd/s-ui/logger"
-	"github.com/zamibd/s-ui/service"
+	"github.com/zamibd/ZPanel/database"
+	"github.com/zamibd/ZPanel/logger"
+	"github.com/zamibd/ZPanel/service"
 )
 
 type DepleteJob struct {

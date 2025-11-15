@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/zamibd/s-ui/logger"
+	"github.com/zamibd/ZPanel/logger"
 
 	"github.com/gin-gonic/gin"
 )

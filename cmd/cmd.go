@@ -6,8 +6,8 @@ import (
 	"os"
 	"runtime/debug"
 
-	"github.com/zamibd/s-ui/cmd/migration"
-	"github.com/zamibd/s-ui/config"
+	"github.com/zamibd/ZPanel/cmd/migration"
+	"github.com/zamibd/ZPanel/config"
 )
 
 func ParseCmd() {
@@ -54,7 +54,7 @@ func ParseCmd() {
 
 	flag.Parse()
 	if showVersion {
-		fmt.Println("S-UI Panel\t", config.GetVersion())
+		fmt.Println("ZPanel Panel\t", config.GetVersion())
 		info, ok := debug.ReadBuildInfo()
 		if ok {
 			for _, dep := range info.Deps {

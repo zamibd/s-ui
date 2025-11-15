@@ -3,9 +3,9 @@ package service
 import (
 	"encoding/json"
 
-	"github.com/zamibd/s-ui/database"
-	"github.com/zamibd/s-ui/database/model"
-	"github.com/zamibd/s-ui/util/common"
+	"github.com/zamibd/ZPanel/database"
+	"github.com/zamibd/ZPanel/database/model"
+	"github.com/zamibd/ZPanel/util/common"
 
 	"gorm.io/gorm"
 )

@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/zamibd/s-ui/config"
-	"github.com/zamibd/s-ui/logger"
+	"github.com/zamibd/ZPanel/config"
+	"github.com/zamibd/ZPanel/logger"
 
 	"github.com/sagernet/sing-box/common/tls"
 	"github.com/shirou/gopsutil/v4/cpu"

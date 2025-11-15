@@ -3,7 +3,7 @@ package core
 import (
 	"context"
 
-	"github.com/zamibd/s-ui/logger"
+	"github.com/zamibd/ZPanel/logger"
 
 	sb "github.com/sagernet/sing-box"
 	"github.com/sagernet/sing-box/adapter"

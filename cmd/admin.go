@@ -3,9 +3,9 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/zamibd/s-ui/config"
-	"github.com/zamibd/s-ui/database"
-	"github.com/zamibd/s-ui/service"
+	"github.com/zamibd/ZPanel/config"
+	"github.com/zamibd/ZPanel/database"
+	"github.com/zamibd/ZPanel/service"
 )
 
 func resetAdmin() {

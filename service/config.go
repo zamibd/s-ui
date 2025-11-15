@@ -5,11 +5,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/zamibd/s-ui/core"
-	"github.com/zamibd/s-ui/database"
-	"github.com/zamibd/s-ui/database/model"
-	"github.com/zamibd/s-ui/logger"
-	"github.com/zamibd/s-ui/util/common"
+	"github.com/zamibd/ZPanel/core"
+	"github.com/zamibd/ZPanel/database"
+	"github.com/zamibd/ZPanel/database/model"
+	"github.com/zamibd/ZPanel/logger"
+	"github.com/zamibd/ZPanel/util/common"
 )
 
 var (

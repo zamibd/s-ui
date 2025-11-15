@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/zamibd/s-ui/logger"
-	"github.com/zamibd/s-ui/util"
+	"github.com/zamibd/ZPanel/logger"
+	"github.com/zamibd/ZPanel/util"
 )
 
 type Link struct {

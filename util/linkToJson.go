@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/zamibd/s-ui/util/common"
+	"github.com/zamibd/ZPanel/util/common"
 )
 
 func GetOutbound(uri string, i int) (*map[string]interface{}, string, error) {

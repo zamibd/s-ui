@@ -3,7 +3,7 @@ package api
 import (
 	"strings"
 
-	"github.com/zamibd/s-ui/util/common"
+	"github.com/zamibd/ZPanel/util/common"
 
 	"github.com/gin-gonic/gin"
 )

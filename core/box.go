@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/zamibd/s-ui/util/common"
+	"github.com/zamibd/ZPanel/util/common"
 
 	"github.com/sagernet/sing-box/adapter"
 	"github.com/sagernet/sing-box/adapter/endpoint"

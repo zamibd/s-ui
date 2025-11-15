@@ -1,7 +1,7 @@
 package cronjob
 
 import (
-	"github.com/zamibd/s-ui/service"
+	"github.com/zamibd/ZPanel/service"
 )
 
 type CheckCoreJob struct {

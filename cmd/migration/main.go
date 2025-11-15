@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/zamibd/s-ui/config"
+	"github.com/zamibd/ZPanel/config"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"

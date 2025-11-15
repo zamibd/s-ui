@@ -22,7 +22,7 @@ tmp
 # Windows build artifacts
 *.exe
 *.zip
-s-ui-windows/
+ZPanel-windows/
 sui-*.exe
 sui-*.zip
 windows/sui-*.exe

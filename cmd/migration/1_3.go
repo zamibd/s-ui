@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/zamibd/s-ui/database/model"
+	"github.com/zamibd/ZPanel/database/model"
 
 	"gorm.io/gorm"
 )

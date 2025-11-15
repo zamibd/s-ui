@@ -3,14 +3,14 @@ package app
 import (
 	"log"
 
-	"github.com/zamibd/s-ui/config"
-	"github.com/zamibd/s-ui/core"
-	"github.com/zamibd/s-ui/cronjob"
-	"github.com/zamibd/s-ui/database"
-	"github.com/zamibd/s-ui/logger"
-	"github.com/zamibd/s-ui/service"
-	"github.com/zamibd/s-ui/sub"
-	"github.com/zamibd/s-ui/web"
+	"github.com/zamibd/ZPanel/config"
+	"github.com/zamibd/ZPanel/core"
+	"github.com/zamibd/ZPanel/cronjob"
+	"github.com/zamibd/ZPanel/database"
+	"github.com/zamibd/ZPanel/logger"
+	"github.com/zamibd/ZPanel/service"
+	"github.com/zamibd/ZPanel/sub"
+	"github.com/zamibd/ZPanel/web"
 
 	"github.com/op/go-logging"
 )

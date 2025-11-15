@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/zamibd/s-ui/logger"
-	"github.com/zamibd/s-ui/util/common"
+	"github.com/zamibd/ZPanel/logger"
+	"github.com/zamibd/ZPanel/util/common"
 
 	"github.com/gin-gonic/gin"
 )

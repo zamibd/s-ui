@@ -1,4 +1,4 @@
-module github.com/zamibd/s-ui
+module github.com/zamibd/ZPanel
 
 go 1.25.1
 

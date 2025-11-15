@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/zamibd/s-ui/database/model"
+	"github.com/zamibd/ZPanel/database/model"
 
 	"github.com/sagernet/sing-box/adapter"
 	"github.com/sagernet/sing/common/atomic"

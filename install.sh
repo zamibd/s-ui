@@ -60,7 +60,7 @@ install_base() {
 
 config_after_install() {
     echo -e "${yellow}Migration... ${plain}"
-    /usr/local/s-ui/sui migrate
+    /usr/local/ZPanel/sui migrate
     
     echo -e "${yellow}Install/update finished! For security it's recommended to modify panel settings ${plain}"
     read -p "Do you want to continue with the modification [y/n]? ": config_confirm
@@ -83,7 +83,7 @@ config_after_install() {
         [ -z "$config_path" ] || params="$params -path $config_path"
         [ -z "$config_subPort" ] || params="$params -subPort $config_subPort"
         [ -z "$config_subPath" ] || params="$params -subPath $config_subPath"
-        /usr/local/s-ui/sui setting ${params}
+        /usr/local/ZPanel/sui setting ${params}
 
         read -p "Do you want to change admin credentials [y/n]? ": admin_confirm
         if [[ "${admin_confirm}" == "y" || "${admin_confirm}" == "Y" ]]; then
@@ -93,14 +93,14 @@ config_after_install() {
 
             # Set credentials
             echo -e "${yellow}Initializing, please wait...${plain}"
-            /usr/local/s-ui/sui admin -username ${config_account} -password ${config_password}
+            /usr/local/ZPanel/sui admin -username ${config_account} -password ${config_password}
         else
             echo -e "${yellow}Your current admin credentials: ${plain}"
-            /usr/local/s-ui/sui admin -show
+            /usr/local/ZPanel/sui admin -show
         fi
     else
         echo -e "${red}cancel...${plain}"
-        if [[ ! -f "/usr/local/s-ui/db/s-ui.db" ]]; then
+        if [[ ! -f "/usr/local/ZPanel/db/ZPanel.db" ]]; then
             local usernameTemp=$(head -c 6 /dev/urandom | base64)
             local passwordTemp=$(head -c 6 /dev/urandom | base64)
             echo -e "this is a fresh installation,will generate random login info for security concerns:"
@@ -108,10 +108,10 @@ config_after_install() {
             echo -e "${green}username:${usernameTemp}${plain}"
             echo -e "${green}password:${passwordTemp}${plain}"
             echo -e "###############################################"
-            echo -e "${red}if you forgot your login info,you can type ${green}s-ui${red} for configuration menu${plain}"
-            /usr/local/s-ui/sui admin -username ${usernameTemp} -password ${passwordTemp}
+            echo -e "${red}if you forgot your login info,you can type ${green}ZPanel${red} for configuration menu${plain}"
+            /usr/local/ZPanel/sui admin -username ${usernameTemp} -password ${passwordTemp}
         else
-            echo -e "${red} this is your upgrade,will keep old settings,if you forgot your login info,you can type ${green}s-ui${red} for configuration menu${plain}"
+            echo -e "${red} this is your upgrade,will keep old settings,if you forgot your login info,you can type ${green}ZPanel${red} for configuration menu${plain}"
         fi
     fi
 }
@@ -120,11 +120,11 @@ prepare_services() {
     if [[ -f "/etc/systemd/system/sing-box.service" ]]; then
         echo -e "${yellow}Stopping sing-box service... ${plain}"
         systemctl stop sing-box
-        rm -f /usr/local/s-ui/bin/sing-box /usr/local/s-ui/bin/runSingbox.sh /usr/local/s-ui/bin/signal
+        rm -f /usr/local/ZPanel/bin/sing-box /usr/local/ZPanel/bin/runSingbox.sh /usr/local/ZPanel/bin/signal
     fi
-    if [[ -e "/usr/local/s-ui/bin" ]]; then
+    if [[ -e "/usr/local/ZPanel/bin" ]]; then
         echo -e "###############################################################"
-        echo -e "${green}/usr/local/s-ui/bin${red} directory exists yet!"
+        echo -e "${green}/usr/local/ZPanel/bin${red} directory exists yet!"
         echo -e "Please check the content and delete it manually after migration ${plain}"
         echo -e "###############################################################"
     fi
@@ -135,52 +135,52 @@ install_s-ui() {
     cd /tmp/
 
     if [ $# == 0 ]; then
-        last_version=$(curl -Ls "https://api.github.com/repos/zamibd/s-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/zamibd/ZPanel/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}Failed to fetch s-ui version, it maybe due to Github API restrictions, please try it later${plain}"
+            echo -e "${red}Failed to fetch ZPanel version, it maybe due to Github API restrictions, please try it later${plain}"
             exit 1
         fi
-        echo -e "Got s-ui latest version: ${last_version}, beginning the installation..."
-        wget -N --no-check-certificate -O /tmp/s-ui-linux-$(arch).tar.gz https://github.com/zamibd/s-ui/releases/download/${last_version}/s-ui-linux-$(arch).tar.gz
+        echo -e "Got ZPanel latest version: ${last_version}, beginning the installation..."
+        wget -N --no-check-certificate -O /tmp/ZPanel-linux-$(arch).tar.gz https://github.com/zamibd/ZPanel/releases/download/${last_version}/ZPanel-linux-$(arch).tar.gz
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}Downloading s-ui failed, please be sure that your server can access Github ${plain}"
+            echo -e "${red}Downloading ZPanel failed, please be sure that your server can access Github ${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/zamibd/s-ui/releases/download/${last_version}/s-ui-linux-$(arch).tar.gz"
-        echo -e "Beginning the install s-ui v$1"
-        wget -N --no-check-certificate -O /tmp/s-ui-linux-$(arch).tar.gz ${url}
+        url="https://github.com/zamibd/ZPanel/releases/download/${last_version}/ZPanel-linux-$(arch).tar.gz"
+        echo -e "Beginning the install ZPanel v$1"
+        wget -N --no-check-certificate -O /tmp/ZPanel-linux-$(arch).tar.gz ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}download s-ui v$1 failed,please check the version exists${plain}"
+            echo -e "${red}download ZPanel v$1 failed,please check the version exists${plain}"
             exit 1
         fi
     fi
 
-    if [[ -e /usr/local/s-ui/ ]]; then
-        systemctl stop s-ui
+    if [[ -e /usr/local/ZPanel/ ]]; then
+        systemctl stop ZPanel
     fi
 
-    tar zxvf s-ui-linux-$(arch).tar.gz
-    rm s-ui-linux-$(arch).tar.gz -f
+    tar zxvf ZPanel-linux-$(arch).tar.gz
+    rm ZPanel-linux-$(arch).tar.gz -f
 
-    chmod +x s-ui/sui s-ui/s-ui.sh
-    cp s-ui/s-ui.sh /usr/bin/s-ui
-    cp -rf s-ui /usr/local/
-    cp -f s-ui/*.service /etc/systemd/system/
-    rm -rf s-ui
+    chmod +x ZPanel/sui ZPanel/ZPanel.sh
+    cp ZPanel/ZPanel.sh /usr/bin/ZPanel
+    cp -rf ZPanel /usr/local/
+    cp -f ZPanel/*.service /etc/systemd/system/
+    rm -rf ZPanel
 
     config_after_install
     prepare_services
 
-    systemctl enable s-ui --now
+    systemctl enable ZPanel --now
 
-    echo -e "${green}s-ui v${last_version}${plain} installation finished, it is up and running now..."
+    echo -e "${green}ZPanel v${last_version}${plain} installation finished, it is up and running now..."
     echo -e "You may access the Panel with following URL(s):${green}"
-    /usr/local/s-ui/sui uri
+    /usr/local/ZPanel/sui uri
     echo -e "${plain}"
     echo -e ""
-    s-ui help
+    ZPanel help
 }
 
 echo -e "${green}Executing...${plain}"

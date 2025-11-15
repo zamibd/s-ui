@@ -3,7 +3,7 @@ package util
 import (
 	"fmt"
 
-	"github.com/zamibd/s-ui/database/model"
+	"github.com/zamibd/ZPanel/database/model"
 )
 
 func GetHeaders(client *model.Client, updateInterval int) []string {

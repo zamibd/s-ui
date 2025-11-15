@@ -7,8 +7,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/zamibd/s-ui/database/model"
-	"github.com/zamibd/s-ui/util/common"
+	"github.com/zamibd/ZPanel/database/model"
+	"github.com/zamibd/ZPanel/util/common"
 )
 
 var InboundTypeWithLink = []string{"socks", "http", "mixed", "shadowsocks", "naive", "hysteria", "hysteria2", "anytls", "tuic", "vless", "trojan", "vmess"}

@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/zamibd/s-ui/database"
-	"github.com/zamibd/s-ui/database/model"
-	"github.com/zamibd/s-ui/service"
-	"github.com/zamibd/s-ui/util"
+	"github.com/zamibd/ZPanel/database"
+	"github.com/zamibd/ZPanel/database/model"
+	"github.com/zamibd/ZPanel/service"
+	"github.com/zamibd/ZPanel/util"
 )
 
 const defaultJson = `

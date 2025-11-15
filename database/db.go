@@ -5,8 +5,8 @@ import (
 	"os"
 	"path"
 
-	"github.com/zamibd/s-ui/config"
-	"github.com/zamibd/s-ui/database/model"
+	"github.com/zamibd/ZPanel/config"
+	"github.com/zamibd/ZPanel/database/model"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"

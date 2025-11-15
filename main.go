@@ -6,8 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/zamibd/s-ui/app"
-	"github.com/zamibd/s-ui/cmd"
+	"github.com/zamibd/ZPanel/app"
+	"github.com/zamibd/ZPanel/cmd"
 )
 
 func runApp() {

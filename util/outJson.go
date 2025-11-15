@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"math/rand"
 
-	"github.com/zamibd/s-ui/database/model"
+	"github.com/zamibd/ZPanel/database/model"
 )
 
 // Fill Inbound's out_json

@@ -12,12 +12,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/zamibd/s-ui/api"
-	"github.com/zamibd/s-ui/config"
-	"github.com/zamibd/s-ui/logger"
-	"github.com/zamibd/s-ui/middleware"
-	"github.com/zamibd/s-ui/network"
-	"github.com/zamibd/s-ui/service"
+	"github.com/zamibd/ZPanel/api"
+	"github.com/zamibd/ZPanel/config"
+	"github.com/zamibd/ZPanel/logger"
+	"github.com/zamibd/ZPanel/middleware"
+	"github.com/zamibd/ZPanel/network"
+	"github.com/zamibd/ZPanel/service"
 
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-contrib/sessions"
@@ -86,7 +86,7 @@ func (s *Server) initRouter() (*gin.Engine, error) {
 	assetsBasePath := base_url + "assets/"
 
 	store := cookie.NewStore(secret)
-	engine.Use(sessions.Sessions("s-ui", store))
+	engine.Use(sessions.Sessions("ZPanel", store))
 
 	engine.Use(func(c *gin.Context) {
 		uri := c.Request.RequestURI

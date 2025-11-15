@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/zamibd/s-ui/config"
-	"github.com/zamibd/s-ui/database"
-	"github.com/zamibd/s-ui/service"
+	"github.com/zamibd/ZPanel/config"
+	"github.com/zamibd/ZPanel/database"
+	"github.com/zamibd/ZPanel/service"
 
 	"github.com/shirou/gopsutil/v4/net"
 )

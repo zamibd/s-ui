@@ -73,8 +73,8 @@ export default {
       dio: "Disk I/O",
     },
     info: {
-      sys: "System Info",
-      sbd: "Sing-Box Info",
+      sys: "Server Info",
+      sbd: "Sing-box Info",
       host: "Host",
       cpu: "CPU",
       core: "Core",
