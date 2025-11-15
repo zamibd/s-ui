@@ -108,7 +108,7 @@ export default {
           "ipv6": false,
           "enhanced-mode": "fake-ip",
           "fake-ip-range": "198.18.0.1/16",
-          "default-nameserver": ["8.8.8.8","1.1.1.1"],
+          "default-nameserver": ["1.1.1.1","9.9.9.9"],
           "nameserver": [
             "https://doh.pub/dns-query",
             "https://1.0.0.1/dns-query"

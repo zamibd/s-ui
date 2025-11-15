@@ -215,7 +215,7 @@ export default {
           {
             "type": "tcp",
             "tag": "proxy-dns",
-            "server": "8.8.8.8",
+            "server": "1.1.1.1",
             "server_port": 53,
             "detour": "proxy",
             "domain_resolver": "local-dns",

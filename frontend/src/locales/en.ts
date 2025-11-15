@@ -41,7 +41,7 @@ export default {
   },
   pages: {
     login: "Login",
-    home: "Home",
+    home: "ZPanel",
     inbounds: "Inbounds",
     outbounds: "Outbounds",
     services: "Services",
@@ -74,7 +74,7 @@ export default {
     },
     info: {
       sys: "Server Info",
-      sbd: "Sing-box Info",
+      sbd: "Core Info",
       host: "Host",
       cpu: "CPU",
       core: "Core",
@@ -129,7 +129,7 @@ export default {
     disable: "Disable",
     close: "Close",
     restartApp: "Restart App",
-    restartSb: "Restart Singbox",
+    restartSb: "Restart Core",
   },
   login: {
     title: "Login",

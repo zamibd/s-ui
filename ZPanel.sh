@@ -227,7 +227,7 @@ stop() {
     else
         systemctl stop $1
         sleep 2
-        check_status
+        check_status $1
         if [[ $? == 1 ]]; then
             LOGI "${1} stopped successfully"
         else
@@ -383,7 +383,7 @@ show_enable_status() {
 
 check_zpanel_status() {
     count=$(ps -ef | grep "sui" | grep -v "grep" | wc -l)
-    if [[ count -ne 0 ]]; then
+    if [[ $count -ne 0 ]]; then
         return 0
     else
         return 1
