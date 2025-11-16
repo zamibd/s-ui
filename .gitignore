@@ -11,6 +11,9 @@ tmp
 .sync*
 *.tar.gz 
 
+# Node.js dependencies
+node_modules/
+
 # local env files
 .env.local
 .env.*.local
