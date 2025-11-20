@@ -3,17 +3,36 @@
     <v-row justify="center" align="center">
       <v-col cols="12" sm="8" md="4">
         <v-card>
-          <v-card-title class="headline" v-text="$t('login.title')"></v-card-title>
+          <!-- Step 1: Username and Password -->
+          <v-card-title class="headline" v-show="step === 1" v-text="$t('login.title')"></v-card-title>
+          <v-card-title class="headline" v-show="step === 2">{{ $t('login.title') }} - {{ $t('login.step2FA') }}</v-card-title>
           <v-card-text>
-            <v-form @submit.prevent="login" ref="form">
+            <!-- Step 1: Login Form -->
+            <v-form v-show="step === 1" @submit.prevent="submitStep1" ref="form1">
               <v-text-field v-model="username" prepend-icon="mdi-account" :label="$t('login.username')" :rules="usernameRules" required></v-text-field>
               <v-text-field v-model="password" prepend-icon="mdi-form-textbox-password" :label="$t('login.password')" :rules="passwordRules" type="password" required></v-text-field>
-      <v-text-field v-model="passcode" prepend-icon="mdi-shield-lock-outline" :label="$t('login.passcode')" :rules="passcodeRules" required></v-text-field>
               <v-btn :loading="loading" type="submit" color="primary" block class="mt-2" v-text="$t('actions.submit')"></v-btn>
             </v-form>
+
+            <!-- Step 2: 2FA Passcode Form -->
+            <v-form v-show="step === 2" @submit.prevent="submitStep2" ref="form2">
+              <v-text-field 
+                v-model="passcode" 
+                prepend-icon="mdi-shield-lock-outline" 
+                :label="$t('login.passcode')" 
+                :rules="passcodeRules" 
+                required
+                placeholder="000000"
+                maxlength="6"
+              ></v-text-field>
+              <v-btn :loading="loading" type="submit" color="primary" block class="mt-2" v-text="$t('actions.submit')"></v-btn>
+              <v-btn variant="outlined" block class="mt-2" @click="goBackToStep1" v-text="$t('actions.back')"></v-btn>
+            </v-form>
+
+            <!-- Language and Theme Controls (always visible) -->
             <v-select
               density="compact"
-              class="mt-2"
+              class="mt-4"
               hide-details
               variant="solo"
               :items="languages"
@@ -49,77 +68,129 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue"
-import { useLocale,useTheme } from 'vuetify'
+import { useLocale, useTheme } from 'vuetify'
 import { i18n, languages } from '@/locales'
 import { useRouter } from 'vue-router'
 import HttpUtil from '@/plugins/httputil'
-
 
 const theme = useTheme()
 const locale = useLocale()
 
 const themes = [
-{ value: 'light', icon: 'mdi-white-balance-sunny' },
-{ value: 'dark', icon: 'mdi-moon-waning-crescent' },
-{ value: 'system', icon: 'mdi-laptop' },
+  { value: 'light', icon: 'mdi-white-balance-sunny' },
+  { value: 'dark', icon: 'mdi-moon-waning-crescent' },
+  { value: 'system', icon: 'mdi-laptop' },
 ]
 
+// Step tracking
+const step = ref(1)
+
+// Step 1: Username and Password
 const username = ref('')
 const usernameRules = [
-(value: string) => {
-  if (value?.length > 0) return true
-  return i18n.global.t('login.unRules')
-},
+  (value: string) => {
+    if (value?.length > 0) return true
+    return i18n.global.t('login.unRules')
+  },
 ]
 
 const password = ref('')
 const passwordRules = [
-(value: string) => {
-  if (value?.length > 0) return true
-  return i18n.global.t('login.pwRules')
-},
+  (value: string) => {
+    if (value?.length > 0) return true
+    return i18n.global.t('login.pwRules')
+  },
 ]
 
+// Step 2: 2FA Passcode
 const passcode = ref('')
 const passcodeRules = [
-(value: string) => {
-  if (value?.length == 6) return true
-  return i18n.global.t('login.passcodeRules')
-},
+  (value: string) => {
+    if (value?.length == 6) return true
+    return i18n.global.t('login.passcodeRules')
+  },
 ]
 
 const loading = ref(false)
 const router = useRouter()
 
-const login = async () => {
-if (username.value == '' || password.value == '' || passcode.value == '') return
-loading.value=true
-const response = await HttpUtil.post('api/login',{user: username.value, pass: password.value, passcode: passcode.value})
-if(response.success){
-  setTimeout(() => {
-    loading.value=false
-    router.push('/')
-  }, 500)
-} else {
-  loading.value=false
+// Submit Step 1: Validate username and password
+const submitStep1 = async () => {
+  if (username.value == '' || password.value == '') return
+  loading.value = true
+  
+  try {
+    // Send only username and password to verify credentials
+    const response = await HttpUtil.post('api/login', {
+      user: username.value,
+      pass: password.value,
+      passcode: '' // Empty passcode for step 1
+    })
+    
+    if (response.success) {
+      // Move to step 2
+      step.value = 2
+      passcode.value = ''
+      loading.value = false
+    } else {
+      loading.value = false
+    }
+  } catch (error) {
+    loading.value = false
+  }
 }
+
+// Submit Step 2: Verify passcode and complete login
+const submitStep2 = async () => {
+  if (passcode.value == '') return
+  if (passcode.value.length !== 6) return
+  
+  loading.value = true
+  
+  try {
+    const response = await HttpUtil.post('api/login', {
+      user: username.value,
+      pass: password.value,
+      passcode: passcode.value
+    })
+    
+    if (response.success) {
+      setTimeout(() => {
+        loading.value = false
+        router.push('/')
+      }, 500)
+    } else {
+      loading.value = false
+    }
+  } catch (error) {
+    loading.value = false
+  }
 }
+
+// Go back to Step 1
+const goBackToStep1 = () => {
+  step.value = 1
+  passcode.value = ''
+}
+
 const changeLocale = (l: any) => {
-locale.current.value = l ?? 'en'
-localStorage.setItem('locale', locale.current.value)
+  locale.current.value = l ?? 'en'
+  localStorage.setItem('locale', locale.current.value)
 }
+
 const changeTheme = (th: string) => {
-theme.change(th)
-localStorage.setItem('theme', th)
+  theme.change(th)
+  localStorage.setItem('theme', th)
 }
+
 const isActiveTheme = (th: string) => {
-const current = localStorage.getItem('theme') ?? 'system'
-return current == th
+  const current = localStorage.getItem('theme') ?? 'system'
+  return current == th
 }
 
 const selectedTheme = computed({
-get: () => localStorage.getItem('theme') ?? 'system',
-set: () => {}
+  get: () => localStorage.getItem('theme') ?? 'system',
+  set: () => {}
 })
 </script>
 

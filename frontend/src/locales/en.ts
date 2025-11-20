@@ -131,6 +131,7 @@ export default {
     generate: "Generate",
     disable: "Disable",
     close: "Close",
+    back: "Back",
     restartApp: "Restart App",
     restartSb: "Restart Core",
   },
@@ -142,6 +143,7 @@ export default {
     pwRules: "Password can not be empty",
 	passcode: "Passcode",
 	passcodeRules: "Passcode can not be empty",
+	step2FA: "2FA Verification",
   },
   menu: {
     logout: "Logout",
